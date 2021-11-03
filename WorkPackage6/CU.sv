@@ -82,13 +82,13 @@ module CU (clk,rst, instr, result2, operand1, operand2, offset, opcode, sel1, se
                    * FILL IN CORRECT CODE HERE
                    *
                    ********************************************/ 
-                    operand1 <= regfile[instruction[15:14]];
-                    operand2 <= regfile[instruction[17:16]];
-                    offset <= instruction[11:4];
-                    opcode <= instruction[3:0];
-                    sel1 <= 0;//1
-                    sel3 <= 1;
-                    w_r <= 0;//1
+                    operand1 <= regfile[instruction[15:14]]; //get operand 1 = X2
+                    operand2 <= regfile[instruction[17:16]]; //get operand 2 = z
+                    offset <= instruction[11:4]; //get offset
+                    opcode <= instruction[3:0]; //get needed opcode
+                    sel1 <= 0; //select sel1's value to set a MUX
+                    sel3 <= 1; //select sel3's value to set a MUX, pass offset
+                    w_r <= 0; //select w/r's value to set either read (0) or write (1)
 
                 end
             end
@@ -118,14 +118,13 @@ module CU (clk,rst, instr, result2, operand1, operand2, offset, opcode, sel1, se
                    * FILL IN CORRECT CODE HERE
                    *
                    ********************************************/ 
-                    operand1 <= regfile[instruction[15:14]];
-                    operand2 <= regfile[instruction[17:16]];
-                    offset <= instruction[11:4];
-                    opcode <= instruction[3:0];
-                    sel1 <= 0;//1
-                    sel3 <= 1;
-                    w_r <= 1;
-                    //state = WRITE_BACK;
+                    operand1 <= regfile[instruction[15:14]]; //get operand 1 = X2
+                    operand2 <= regfile[instruction[17:16]]; //get operand 2 = z
+                    offset <= instruction[11:4]; //get offset
+                    opcode <= instruction[3:0]; //get needed opcode
+                    sel1 <= 0; //select sel1's value to set a MUX
+                    sel3 <= 1; //select sel3's value to set a MUX, pass offset
+                    w_r <= 1; //select w/r's value to set either read (0) or write (1)
                 end
             end
             MEM_ACCESS: begin //#3
@@ -146,13 +145,13 @@ module CU (clk,rst, instr, result2, operand1, operand2, offset, opcode, sel1, se
                    * the FSM
                    *
                    ********************************************/ 
-                    operand1 <= regfile[instruction[15:14]];
-                    operand2 <= regfile[instruction[17:16]];
-                    offset <= instruction[11:4];
-                    opcode <= instruction[3:0];
-                    sel1 <= 0;//1
-                    sel3 <= 1;
-                    w_r <= 0;//1
+                    operand1 <= regfile[instruction[15:14]]; //get operand 1 = X2
+                    operand2 <= regfile[instruction[17:16]]; //get operand 2 = z
+                    offset <= instruction[11:4]; //get offset
+                    opcode <= instruction[3:0]; //get needed opcode
+                    sel1 <= 0; //select sel1's value to set a MUX
+                    sel3 <= 1; //select sel3's value to set a MUX, pass offset
+                    w_r <= 0; //select w/r's value to set either read (0) or write (1)
                     state = DECODE;
                 end
             end
@@ -174,14 +173,13 @@ module CU (clk,rst, instr, result2, operand1, operand2, offset, opcode, sel1, se
                    * FILL IN CORRECT CODE HERE
                    *
                    ********************************************/ 
-                    operand1 <= regfile[instruction[15:14]];
-                    operand2 <= regfile[instruction[17:16]];
-                    offset <= instruction[11:4];
-                    opcode <= instruction[3:0];
-                    sel1 <= 1;
-                    sel3 <= 0;//1
-                    w_r <= 0;//1
-                    //state = DECODE;
+                    operand1 <= regfile[instruction[15:14]]; //get operand 1 = X2
+                    operand2 <= regfile[instruction[17:16]]; //get operand 2 = z
+                    offset <= instruction[11:4]; //get offset
+                    opcode <= instruction[3:0]; //get needed opcode
+                    sel1 <= 1; //select sel1's value to set a MUX
+                    sel3 <= 0;//1 select sel3's value to set a MUX, don't pass offset
+                    w_r <= 0; //1 select w/r's value to set either read (0) or write (1)
                   
                 end else if (instruction[19:18] == 2'b10) begin //loadR
                     regfile[instruction[17:16]] <= result2; //From data mem
