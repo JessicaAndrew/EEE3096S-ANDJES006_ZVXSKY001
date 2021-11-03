@@ -46,7 +46,7 @@ module tb_simple_CPU;
         instruction = 20'b11011000000011110000;
         repeat(6) #1 clk=!clk;
         
-        //STORE_R:   DATA_MEM(reg3 + 20) = reg0  //DATA_MEM(2+20)= 4  
+        //STORE_R:   DATA_MEM(reg3 + 22) = reg0  //DATA_MEM(2+22)= 4  
         //In the instruction this is:    (instr)                 (X2)         (X1)
         instruction = 20'b11001100000101100000;
         repeat(6) #1 clk=!clk;
@@ -56,6 +56,10 @@ module tb_simple_CPU;
         instruction = 20'b10111000000011110000;
         repeat(7) #1 clk=!clk;
         
+        //LOAD_R:   DATA_MEM(reg2 + 15) = reg3  //reg3 = DATA_MEM(2+15)  -> reg3 becomes 7  
+        //In the instruction this is:    (instr)                (X2)         (X1)
+        instruction = 20'b10111000000011110000;
+        repeat(7) #1 clk=!clk;
         
     end
     
