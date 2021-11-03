@@ -60,10 +60,10 @@ module tb_simple_CPU;
       
       
       
-       /* //LOAD_R:   DATA_MEM(reg2 + 15) = reg3  //reg3 = DATA_MEM(2+15)  -> reg3 becomes 7
+        //LOAD_R:   DATA_MEM(reg2 + 15) = reg3  //reg3 = DATA_MEM(2+15)  -> reg3 becomes 7
         //In the instruction this is:    (instr)                (X2)         (X1)
         instruction = 20'b10111000000011110000;
-      repeat(7) #1 clk=!clk;*/
+      repeat(7) #1 clk=!clk;
       
         
     end
